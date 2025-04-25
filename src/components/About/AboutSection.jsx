@@ -1,6 +1,7 @@
 import React from 'react';
 import TimelineItem from './Timeline';
 import { motion } from 'framer-motion';
+import Skill from './Skill';
 
 const AboutSection = () => {
   return (
@@ -22,21 +23,7 @@ const AboutSection = () => {
           />
         </motion.div>
 
-        {/* Skills Section */}
-        <motion.div
-          className="w-60 h-60 bg-amber-600 rounded-lg p-4 flex flex-col justify-center items-center text-white"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h3 className="text-xl font-semibold mb-2">Skills</h3>
-          <ul className="text-sm space-y-2">
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Node.js</li>
-            <li>Tailwind CSS</li>
-          </ul>
-        </motion.div>
+     
 
         {/* Timeline Section */}
         <TimelineItem />

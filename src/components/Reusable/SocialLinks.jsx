@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 const SocialLinks = () => {
     const socialLinks = [
         { icon: <FaGithub />, url: 'https://github.com/Hatzlingr' },
-        { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/hatzlingr/' },
+        { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/amirul-nur-cahyo-a88485322' },
         { icon: <FaTwitter />, url: 'https://twitter.com/Hatzlingr' },
         { icon: <FaInstagram />, url: 'https://www.instagram.com/mirrnc_/' },
     ];

@@ -1,32 +1,112 @@
-import React from 'react';
-import { motion } from 'framer-motion';  // Corrected import for motion
+import React, { useState, useRef, useEffect } from 'react';
+import Button from '../Reusable/Button';
+import { div } from 'motion/react-client';
 
 const Timeline = () => {
-  const education = [
-    { year: "2021 - 2024", degree: "Teknik Jaringan Komputer dan Telekomunikasi", institution: "SMK Negeri 1 Jogonalan" },
-    { year: "2024 - Present", degree: "Informatics Engineering", institution: "Sriwijaya University" },
-  ];
+  const tabs = {
+    education: [
+      {
+        title: 'Universitas Sriwijaya',
+        year: '2024 - Present',
+        details: 'Teknik Informatika',
+      },
+      {
+        title: 'SMK Negeri 1 Jogonalan',
+        year: '2021 - 2024',
+        details: 'Teknik Jaringan Komputer dan Telekomunikasi',
+      },
+      
+    ],
+    experience: [
+      {
+        title: 'Internship at PT. Telkom Indonesia',
+        year: '2023 - Present',
+        details: 'Internship in Network Engineering',
+      },
+      {
+        title: 'Freelance Web Developer',
+        year: '2022 - Present',
+        details: 'Developing websites for various clients',
+      },
+    ],
+  };
+
+  const [activeTab, setActiveTab] = useState('education');
+  const [infoVisibleIndex, setInfoVisibleIndex] = useState(null);
+  const containerRefs = useRef([]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        infoVisibleIndex !== null &&
+        containerRefs.current[infoVisibleIndex] &&
+        !containerRefs.current[infoVisibleIndex].contains(event.target)
+      ) {
+        setInfoVisibleIndex(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [infoVisibleIndex]);
 
   return (
-    <div className="grid grid-cols-1 bg-amber-600 rounded p-6">
-      <h2 className="text-2xl font-bold mb-4">Education</h2>
-      <div className="grid gap-4 grid-cols-1">
-        {education.map((item, index) => (
-          <motion.div
+    <div className="flex flex-col p-6 bg-white w-full max-w-96 mx-auto">
+      <div className="flex justify-center mb-4">
+        <Button
+          text="Education"
+          onClick={() => setActiveTab('education')}
+          styleClass={`rounded-none rounded-tl-2xl rounded-bl-2xl ${
+            activeTab === 'education' ? 'bg-white text-blue-500' : ''
+          }`}
+        />
+        <Button
+          text="Experience"
+          onClick={() => setActiveTab('experience')}
+          styleClass={`rounded-none rounded-tr-2xl rounded-br-2xl ${
+            activeTab === 'experience' ? 'bg-white text-blue-500' : ''
+          }`}
+        />
+      </div>
+
+      <div className="border-l border-blue-500 space-y-4 relative">
+        
+        {tabs[activeTab].map((item, index) => (
+          
+          <div
             key={index}
-            className="border p-4 rounded-lg bg-gray-50 hover:shadow-md transition"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }} // Staggered effect
+            ref={(el) => (containerRefs.current[index] = el)}
+            className="p-4 relative"
           >
-            <h3 className="text-xl font-semibold">{item.degree}</h3>
-            <p className="text-sm text-gray-600 mb-2">{item.institution}</p>
+            <div className="absolute top-1/2 left-[-5px] w-3 h-3 bg-blue-500 rounded-full" />
+            <h3 className="text-md sm:text-xl font-bold">{item.title}</h3>
             <p className="text-sm text-gray-600">{item.year}</p>
-          </motion.div>
+
+            <button
+              onClick={() =>
+                setInfoVisibleIndex(infoVisibleIndex === index ? null : index)
+              }
+              className="text-sm text-blue-500 underline mt-2"
+            >
+              {infoVisibleIndex === index ? 'Hide Info' : 'Show Info'}
+            </button>
+
+            <div
+              className={`absolute z-10 p-4 bg-blue-500 border rounded shadow top-full left-0 mt-2 w-64 transition-all duration-300 ease-in-out ${
+                infoVisibleIndex === index
+                  ? 'opacity-100 scale-100 visible'
+                  : 'opacity-0 scale-95 invisible pointer-events-none'
+              }`}
+            >
+              <p className="text-sm text-white">
+                {item.details}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Timeline;
