@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Reusable/Button';
-import { div } from 'motion/react-client';
 
 const Timeline = () => {
   const tabs = {
@@ -15,7 +14,6 @@ const Timeline = () => {
         year: '2021 - 2024',
         details: 'Teknik Jaringan Komputer dan Telekomunikasi',
       },
-      
     ],
     experience: [
       {
@@ -48,7 +46,7 @@ const Timeline = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [infoVisibleIndex]);
+  }, [infoVisibleIndex]); // We don't need to listen to containerRefs as it doesn't change
 
   return (
     <div className="flex flex-col p-6 bg-white w-full max-w-96 mx-auto">
@@ -69,10 +67,8 @@ const Timeline = () => {
         />
       </div>
 
-      <div className="border-l border-blue-500 space-y-4 relative">
-        
+      <div className="border-l border-blue-500  space-y-4 relative">
         {tabs[activeTab].map((item, index) => (
-          
           <div
             key={index}
             ref={(el) => (containerRefs.current[index] = el)}
@@ -98,9 +94,7 @@ const Timeline = () => {
                   : 'opacity-0 scale-95 invisible pointer-events-none'
               }`}
             >
-              <p className="text-sm text-white">
-                {item.details}
-              </p>
+              <p className="text-sm text-white">{item.details}</p>
             </div>
           </div>
         ))}

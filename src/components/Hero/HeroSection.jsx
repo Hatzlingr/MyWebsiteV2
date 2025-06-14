@@ -38,7 +38,7 @@ const HeroSection = () => {
           <img
             src={profilePic}
             alt="Amirul Nur Cahyo"
-            className="w-50 h-50 md:w-80 md:h-80 object-cover rounded-full shadow-lg border-4 border-blue-500"
+            className="w-50 h-50 md:w-80 md:h-80 object-cover rounded-full shadow-[0_0_10px_blue-500] shadow-blue-500 border-4 border-blue-500"
           />
         </div>
         
