@@ -17,15 +17,10 @@ const Timeline = () => {
     ],
     experience: [
       {
-        title: 'Internship at PT. Telkom Indonesia',
-        year: '2023 - Present',
-        details: 'Internship in Network Engineering',
-      },
-      {
-        title: 'Freelance Web Developer',
-        year: '2022 - Present',
-        details: 'Developing websites for various clients',
-      },
+        title: '-',
+        year: '-',
+        details: '-',
+      }
     ],
   };
 
@@ -67,7 +62,7 @@ const Timeline = () => {
         />
       </div>
 
-      <div className="border-l border-blue-500  space-y-4 relative">
+      <div className="border-l-2 border-blue-500  space-y-4 relative">
         {tabs[activeTab].map((item, index) => (
           <div
             key={index}
