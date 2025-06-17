@@ -6,7 +6,7 @@ const SocialLinks = () => {
     const socialLinks = [
         { icon: <FaGithub />, url: 'https://github.com/Hatzlingr' },
         { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/amirul-nur-cahyo-a88485322' },
-        { icon: <FaXTwitter />, url: 'https://twitter.com/Hatzlingr' },
+        { icon: <FaXTwitter />, url: 'https://twitter.com/Amir7461' },
         { icon: <FaInstagram />, url: 'https://www.instagram.com/mirrnc_/' },
     ];
   return (
